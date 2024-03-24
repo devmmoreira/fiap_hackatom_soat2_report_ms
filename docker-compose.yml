@@ -1,0 +1,17 @@
+version: "3"
+services:
+  clock-sign-report-ms:
+    container_name: "clock-sign-report-ms"
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: npm run prod:server
+    working_dir: /home/node/app
+    expose:
+      - "12968"
+    ports: 
+      - "12968:12968"
+    depends_on:
+      clock-sign-pg:
+        condition: service_healthy
+    restart: always

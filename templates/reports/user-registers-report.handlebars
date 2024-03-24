@@ -1,0 +1,108 @@
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        font-family: sans-serif;
+    }
+
+    .report {
+        padding: 22px;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid black;
+        padding-bottom: 12px;
+    }
+
+    .header-info{
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header-info div{
+        font-size: 16px;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .table{
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+
+    .table tr, th, td, thead, tbody{
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+
+    .table  th, td{
+        padding: 8px;
+    }
+</style>
+
+<main class="report">
+    <header class="header">
+        <div>
+            <h1 style="font-size: 32px">Espelho de ponto</h1>
+        </div>
+        <div class="header-info" style="margin-top: 12px;">
+            <div>
+                <p><b>Empresa internacional de marcação de ponto</b></p>   
+                <p><b>CNPJ:</b> 95.691.028/0001-29</p>
+            </div>
+            <div>
+                <p><b>Av. Paulista, 1106 - 7º andar - Bela Vista, São Paulo - SP, 01311-000</b> </p>
+                <p><b>Telefone:</b> (11) 4002-8922</p>
+            </div>
+        </div>
+        <div class="header-info" style="margin-top: 8px;">
+            <div>
+                <p><b>Funcionário: </b>{{ employee.name }}</p>   
+                <p><b>PIB: </b>{{ employee.pib }}</p>
+            </div>
+            <div>
+                <p><b>CPF: </b> {{ employee.document }}</p>
+                <p><b>Cargo: </b>{{ employee.role }}</p>
+            </div>
+            <div>
+                <p><b>Período: </b>{{ startPeriod }} até {{ endPeriod }}</p>
+                <p><b>Total de horas:</b> {{ total_hours }}</p>
+            </div>
+        </div>
+    </header>
+    <section style="margin-top: 22px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th rowspan="2" colspan="3">Data</th>
+                    <th colspan="4">Jornada Realizada</th>
+                </tr>
+                <tr>
+                    <th>Entrada</th>
+                    <th>Saída</th>
+                    <th>Entrada</th>
+                    <th>Saída</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each registries}}
+                    <tr>
+                        <td colspan="2">{{this.date}}</td>
+                        <td>{{ this.weekDay }}</td>
+                        <td>{{ this.start_period }}</td>
+                        <td>{{ this.start_lunch }}</td>
+                        <td>{{ this.end_lunch }}</td>
+                        <td>{{ this.end_period }}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </section>
+</main>
